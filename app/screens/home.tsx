@@ -3,13 +3,12 @@ import { StyleSheet, View, Text, Pressable, SafeAreaView } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import Header from '@/components/Header';
 
 type RootStackParamList = {
   HomeScreen: undefined;
   ProfileScreen: undefined;
   CustomerScreen: undefined;
-  Profile: undefined;
+  TransactionScreen: undefined;
 };
 
 type DashboardScreenNavigationProp = StackNavigationProp<
@@ -26,7 +25,6 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Dashboard" />
       <View style={styles.iconContainer}>
         <View style={styles.row}>
           <Pressable style={styles.iconWrapper} onPress={() => handleNavigate('ProfileScreen')}>
@@ -39,7 +37,7 @@ export default function HomeScreen() {
           </Pressable>
         </View>
         <View style={styles.row}>
-          <Pressable style={styles.iconWrapper} onPress={() => handleNavigate('Profile')}>
+          <Pressable style={styles.iconWrapper} onPress={() => handleNavigate('TransactionScreen')}>
             <MaterialCommunityIcons name="credit-card" size={50} color="orange" />
             <Text style={styles.iconLabel}>Transactions</Text>
           </Pressable>

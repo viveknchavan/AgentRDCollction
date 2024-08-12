@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, StyleSheet, View, Text, Pressable } from 'react-native';
-import Header from '@/components/Header';
 import Button from '@/components/Button';
 
 export default function ProfileScreen() {
@@ -14,10 +13,7 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      <Header 
-        title="User Profile" 
-        rightButton={<Button title="Edit" onPress={() => console.log('Edit Profile')} />} 
-      />
+  
       <View style={styles.profileContainer}>
         <Image source={{ uri: user.profileImage }} style={styles.profileImage} />
         <Text style={styles.name}>{user.name}</Text>

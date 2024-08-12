@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ActivityIndicator } from 'react-native';
-import Header from '@/components/Header';
+import { View, Text, TextInput, Button, StyleSheet, ActivityIndicator, Alert } from 'react-native';
 import axios from 'axios';
 
 export default function TransactionScreen() {
@@ -10,30 +9,41 @@ export default function TransactionScreen() {
   const [date, setDate] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(''); // State for the message
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async () => {
+    // Basic validation
+    if (!name || !amount || !date || !accountNumber) {
+      Alert.alert('Validation Error', 'Please fill in all required fields.');
+      return;
+    }
+
     setLoading(true);
-    setMessage(''); // Clear previous message
+    setMessage('');
     try {
       const response = await axios.get(
-        'https://script.google.com/macros/s/AKfycbwZ_zLroKiFynQaiY3KRiFpS1d-74WZg-prckaNglnqgL4LZWN8JJdDT9ld4pUHZWWI/exec'
-        , {
-        params: {
-          path: 'Transaction',
-          action: 'write',
-          Name: name,
-          Amount: amount,
-          Installment: installment,
-          Date: date,
-          AccountNumber: accountNumber
-        },
-      });
+        'https://script.google.com/macros/s/AKfycbwZ_zLroKiFynQaiY3KRiFpS1d-74WZg-prckaNglnqgL4LZWN8JJdDT9ld4pUHZWWI/exec',
+        {
+          params: {
+            path: 'Transaction',
+            action: 'write',
+            Name: name,
+            Amount: amount,
+            Installment: installment,
+            Date: date,
+            AccountNumber: accountNumber,
+          },
+        }
+      );
 
-      // Show success message
       setMessage('Transaction submitted successfully!');
+      // Clear the form
+      setName('');
+      setAmount('');
+      setInstallment('');
+      setDate('');
+      setAccountNumber('');
     } catch (error) {
-      // Show error message
       setMessage('An error occurred while submitting the transaction.');
       console.error('Error:', error);
     } finally {
@@ -43,7 +53,6 @@ export default function TransactionScreen() {
 
   return (
     <View style={styles.container}>
-      <Header title="Transaction" />
       <View style={styles.form}>
         <Text style={styles.label}>Name</Text>
         <TextInput

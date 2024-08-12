@@ -24,35 +24,7 @@ export default function TabLayout() {
         }}
       />
 
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="customer"
-        options={{
-          title: 'Customer',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'people' : 'people-outline'} color={color} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="transaction"
-        options={{
-          title: 'Transaction',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'people' : 'people-outline'} color={color} />
-          ),
-        }}
-      />
+   
     </Tabs>
   );
 }

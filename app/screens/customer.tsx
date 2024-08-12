@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, FlatList, SafeAreaView, ActivityIndicator, Alert } from 'react-native';
-import Header from '@/components/Header';
 import axios from 'axios';
 
 type Transaction = {
@@ -65,7 +64,6 @@ export default function SearchScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Search Transactions" />
       <View style={styles.searchContainer}>
         <Text style={styles.label}>Search by Account Number</Text>
         <TextInput
