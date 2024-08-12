@@ -81,16 +81,16 @@ const styles = StyleSheet.create({
   iconContainer: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 20, // Added padding for better spacing
+    paddingHorizontal: 20,
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between', // Changed to 'space-between' for even spacing
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
   iconWrapper: {
     alignItems: 'center',
-    width: '45%', // Adjusted width to ensure proper spacing between icons
+    width: '45%',
   },
   iconLabel: {
     marginTop: 5,

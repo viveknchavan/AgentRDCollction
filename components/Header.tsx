@@ -1,22 +1,60 @@
-import React, { memo } from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { theme } from '../core/theme';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {
-  children: React.ReactNode;
+interface HeaderProps {
+  title: string;
+  showBackButton?: boolean;
+  rightButton?: React.ReactNode;
+}
+
+const Header: React.FC<HeaderProps> = ({ title, showBackButton = true, rightButton }) => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.headerContainer}>
+      {showBackButton && (
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Text style={styles.backButtonText}>Back</Text>
+        </TouchableOpacity>
+      )}
+      <Text style={styles.title}>{title}</Text>
+      {rightButton && <View style={styles.rightButtonContainer}>{rightButton}</View>}
+    </View>
+  );
 };
 
-const Header = ({ children }: Props) => (
-  <Text style={styles.header}>{children}</Text>
-);
-
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 26,
-    color: theme.colors.primary,
+  headerContainer: {
+    height: 60,
+    backgroundColor: '#007bff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
+  },
+  backButton: {
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backButtonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 20,
     fontWeight: 'bold',
-    paddingVertical: 14,
+    flex: 1,
+    textAlign: 'center',
+  },
+  rightButtonContainer: {
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
-export default memo(Header);
+export default Header;
